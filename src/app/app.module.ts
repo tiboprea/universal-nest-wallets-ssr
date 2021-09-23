@@ -18,15 +18,12 @@ import { SharedModule } from './modules/shared/shared.module';
     TransferHttpCacheModule,
 
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      {
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    {
         path: 'speakers',
-        loadChildren: () =>
-          import('./modules/speakers/speakers.module').then(
-            m => m.SpeakersModule
-          )
-      }
-    ]),
+        loadChildren: () => import('./modules/speakers/speakers.module').then(m => m.SpeakersModule)
+    }
+], { relativeLinkResolution: 'legacy' }),
     SharedModule
   ],
   bootstrap: [AppComponent]
