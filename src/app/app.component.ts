@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppStore } from './app.store';
 
 @Component({
   selector: 'app-root',
   template: `
+    <app-navigation></app-navigation>
     <div id="container">
       <h1>NestJS + Angular Universal</h1>
 
@@ -31,6 +33,13 @@ import { Component } from '@angular/core';
         border: 1px #ccc solid;
       }
     `
-  ]
+  ],
+  viewProviders: [AppStore],
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  constructor(private readonly _appStore: AppStore) {}
+
+  ngOnInit(): void {
+    this._appStore.notifyError();
+  }
+}
